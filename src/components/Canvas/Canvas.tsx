@@ -1,8 +1,9 @@
-import React, {ReactElement, useEffect, useRef, useState} from 'react'
+import {ReactElement, useEffect, useRef, useState} from 'react'
 import '../../style/canvas.scss'
 import { observer } from "mobx-react"
-import Tools from '../../store/tools'
+import ToolsStore from '../../store/tools'
 import CanvasStore from '../../store/canvas'
+import Brush from '../../tools/Brush'
 
 const Canvas = observer((): ReactElement => {
     const ref = useRef<HTMLCanvasElement | null>(null);
@@ -10,12 +11,9 @@ const Canvas = observer((): ReactElement => {
     useEffect(() => {
         if(ref.current) {
             CanvasStore.setCanvas(ref.current)
+            ToolsStore.setTool(new Brush(ref.current))
         }
     }, [])
-    useEffect(() => {
-        CanvasStore.setContext()
-        CanvasStore.setListens()
-    }, [ref.current, Tools.name])
 
 
     return (

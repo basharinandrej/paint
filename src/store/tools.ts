@@ -1,14 +1,14 @@
 import { makeAutoObservable } from "mobx"
 
-class Tools {
-    name = 'pen'
+class ToolsStore {
+    name = null
 
     constructor() {
         makeAutoObservable(this)
     }
 
-    setTool(tool: string): void{
+    setTool(tool: any): void{
         this.name = tool
     }
 }
-export default new Tools()
+export default new ToolsStore()
