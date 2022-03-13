@@ -1,0 +1,8 @@
+.tools {
+    display: flex;
+    padding: 20px 100px;
+    &-pen {
+        padding: 4px 8px;
+        cursor: pointer;
+    }
+}
