@@ -17,17 +17,20 @@ class Brush extends Tool {
         }
     }
 
-    onMouseDownHandler = (e: any) => {
+    onMouseDownHandler = (e: MouseEvent) => {
         const {pageX, pageY} = e
+        const target = e.target as HTMLCanvasElement
         this.isMouseDown = true
+        
         this.ctx?.beginPath()
-        this.ctx?.moveTo(pageX - e.target.offsetLeft, pageY - e.target.offsetTop)
+        this.ctx?.moveTo(pageX - target?.offsetLeft, pageY - target?.offsetTop)
     }
-    onMouseMoveHandler = (e: any) => {
+    onMouseMoveHandler = (e: MouseEvent) => {
         const {pageX, pageY} = e
+        const target = e.target as HTMLCanvasElement
 
         if(this.isMouseDown) {
-            this.ctx?.lineTo(pageX - e.target.offsetLeft, pageY - e.target.offsetTop)
+            this.ctx?.lineTo(pageX - target?.offsetLeft, pageY - target?.offsetTop)
             this.ctx?.stroke()
         }
     }

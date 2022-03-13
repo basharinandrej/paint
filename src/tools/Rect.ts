@@ -18,22 +18,23 @@ class Rect extends Tool {
         }
     }
 
-    onMouseDownHandler = (e: any) => {
+    onMouseDownHandler = (e: MouseEvent) => {
         const {pageX, pageY} = e
+        const target = e.target as HTMLCanvasElement
         this.isMouseDown = true
-        this.ctx?.beginPath()
-        this.ctx?.moveTo(pageX - e.target.offsetLeft, pageY - e.target.offsetTop)
-
         this.initRectCoorX = pageX
         this.initRectCoorY = pageY
-        
+
+        this.ctx?.beginPath()
+        this.ctx?.moveTo(pageX - target?.offsetLeft, pageY - target?.offsetTop)
     }
-    onMouseMoveHandler = (e: any) => {
+    onMouseMoveHandler = (e: MouseEvent) => {
         const {pageX, pageY} = e
+        const target = e.target as HTMLCanvasElement
 
         if (this.isMouseDown) {
-            let startX = this.initRectCoorX - e.target.offsetLeft
-            let startY = this.initRectCoorY - e.target.offsetTop
+            let startX = this.initRectCoorX - target?.offsetLeft
+            let startY = this.initRectCoorY - target?.offsetTop
             let width = pageX - this.initRectCoorX
             let height = pageX - this.initRectCoorX
 

@@ -12,6 +12,7 @@ const Canvas = observer((): ReactElement => {
         if(ref.current) {
             CanvasStore.setCanvas(ref.current)
             ToolsStore.setTool(new Brush(ref.current))
+
         }
     }, [])
 
